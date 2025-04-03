@@ -10,23 +10,23 @@ p_account_id IN INTEGER -- Must not be NULL. Must match an account_id value in B
 AS $$
 BEGIN
 IF p_pass_type IS NULL THEN
-RAISE EXCEPTION 'missing value for pass type';
+RAISE EXCEPTION 'Missing mandatory value for parameter p_pass_type in PURCHASE_MEMBERSHIP_SP.  No membership added.', ;
 END IF;
 
 IF p_pass_total IS NULL THEN
-	RAISE EXCEPTION 'missing value for pass total';
+	RAISE EXCEPTION 'Missing mandatory value for parameter p_pass_ttotal in PURCHASE_MEMBERSHIP_SP.  No membership added.';
 END IF;
 
 IF p_start_time IS NULL THEN
-	RAISE EXCEPTION 'missing value for start time';
+	RAISE EXCEPTION 'Missing mandatory value for parameter p_start_time in PURCHASE_MEMBERSHIP_SP.  No membership added.';
 END IF;
 
 IF p_end_time IS NULL THEN
-	RAISE EXCEPTION 'missing value for end time';
+	RAISE EXCEPTION 'Missing mandatory value for parameter p_end_time in PURCHASE_MEMBERSHIP_SP.  No membership added.';
 END IF;
 
 IF p_account_id IS NULL THEN
-	RAISE EXCEPTION 'missing value for account id';
+	RAISE EXCEPTION 'Missing mandatory value for parameter p_account_id in PURCHASE_MEMBERSHIP_SP.  No membership added.';
 END IF;
 
 IF NOT EXISTS (SELECT 1 FROM BC_PASS WHERE pass_type = p_pass_type) THEN
