@@ -1,3 +1,18 @@
+CREATE OR REPLACE PROCEDURE CREATE_ACCOUNT_SP (
+    p_account_id            OUT INTEGER,        -- an output parameter
+    p_account_first_name    IN VARCHAR,         -- Must not be NULL
+    p_account_last_name     IN VARCHAR,         -- Must not be NULL
+    p_account_email         IN VARCHAR,         -- Must be unique
+    p_account_password      IN VARCHAR,         -- Must not be NULL
+    p_account_mobile_phone  IN VARCHAR,         -- Must not be NULL
+    p_account_street        IN VARCHAR,         -- Must not be NULL
+    p_account_apartment     IN VARCHAR,
+    p_account_city          IN VARCHAR,         -- Must not be NULL
+    p_account_state_province IN VARCHAR,       -- Must not be NULL
+    p_account_postal_code   IN VARCHAR         -- Must not be NULL
+    )
+
+AS $$
 BEGIN
 	IF p_account_first_name IS NULL
 	THEN RAISE EXCEPTION 'Everyone needs a first name';
@@ -58,3 +73,4 @@ BEGIN
 	RAISE NOTICE 'Du har fått en bruker med id %', p_account_id;
 	COMMIT;
 END;
+$$ LANGUAGE plpgsql
