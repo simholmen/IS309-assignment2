@@ -1,3 +1,46 @@
+/* 
+CREATE_BICYCLE_SP.  Add a new bicycle to the BC_BICYCLE table.  The procedure should take as input bicycle-related attributes 
+and create a new bicycle.  The procedure returns the identifier of the new bicycle.
+
+PARAMETERS: described below
+RETURNS:    new bicycle identifier
+ERROR MESSAGES:
+    Error text:  "Missing mandatory value for parameter (x) in CREATE_BICYCLE_SP.  No bicycle added."
+    Error meaning:  A mandatory value is missing.  Here x = the name of the parameter whose value is missing.
+    Error effect:  Because a mandatory value is not provided, no data are inserted into the BC_BICYCLE table.  
+       
+    Error text: "Invalid bicycle type (x)."
+    Error meaning:  The value of the bicycle type parameter is not one of the values permitted by the CHECK constraint on 
+                    bicycle_type.  Here, x = the value of bicycle type passed into the procedure.
+    Error effect:  No new bicycle inserted into the BC_BICYCLE table.  
+    
+    Error text: "Invalid bicycle status (x)."
+    Error meaning:  The value of the bicycle status parameter is not one of the values permitted by the CHECK constraint on 
+                    bicycle_type.  Here, x = the value of bicycle status passed into the procedure.
+    Error effect:  No new bicycle inserted into the BC_BICYCLE table.  
+    
+    Error text: "Invalid bicycle current power value (x)."
+    Error meaning:  The value of the bicycle current power  parameter is not a value between 0 and 100.  Here, x = the value 
+                    of bicycle current power  passed into the procedure.
+    Error effect:  No new bicycle inserted into the BC_BICYCLE table.  
+     
+    Error text: "Invalid Latitude (x)."
+    Error meaning:  The value of the p_latitude parameter is not within the range of valid latitude values (between -90 and 90).    
+                   Here, x = the value of p_latitude parameter passed into the procedure.
+    Error effect:  No new bicycle inserted into the BC_BICYCLE table.  
+    
+    Error text:  "Invalid longitude (x)."
+    Error meaning:  The value of the p_longitiude parameter is not within the range of valid longitude values (between -180 and 180).    
+                   Here, x = the value of p_longitude parameter passed into the procedure.
+    Error effect:  No new bicycle inserted into the BC_BICYCLE table.  
+    
+    Error text:     "Invalid bicycle rider capacity (x)"
+    Error meaning:  A bicycle rider capacity less than zero has been passed to the procedure.  Here, x = the value of the rider 
+                    capacity passed into the procedure.
+    Error effect:   No new bicycle created.
+                    
+
+*/
 create or replace procedure CREATE_BICYCLE_SP (
 p_bicycle_id OUT INTEGER, -- an output parameter
 p_bicycle_type IN VARCHAR, -- Must not be NULL.
@@ -10,7 +53,7 @@ p_status IN VARCHAR, -- Must not be NULL
 p_latitude IN INTEGER,
 p_longitude IN INTEGER,
 p_current_power IN NUMERIC, -- Must be between 0 and 100
-p_current_range IN NUMERIC, -- Range in meters. Must not be a NEGATIV NUMPER
+p_current_range IN NUMERIC, -- Range in meters. Must not be a NEGATIV NUMBER
 p_updated IN DATE
 )
 
