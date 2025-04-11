@@ -7,6 +7,7 @@ p_end_time IN DATE, -- Must not be NULL. In a more sophisticated vesion of this 
 -- we could have the end time calculated based on the pass type.
 p_account_id IN INTEGER -- Must not be NULL. Must match an account_id value in BC_ACCOUNT
 )
+
 AS $$
 BEGIN
 IF p_pass_type IS NULL THEN
